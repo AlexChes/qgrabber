@@ -10,9 +10,14 @@ import java.util.List;
 public class Main {
 
     public static void main(String... args) throws IOException {
-        String urlStr = "http://85.142.162.119/os11/xmodules/qprint/index.php?theme_guid=d06ff6d27541e311b6f4001fc68344c9&proj_guid=068A227D253BA6C04D0C832387FD0D89";
+//        String urlStr = "http://85.142.162.119/os11/xmodules/qprint/index.php?theme_guid=d06ff6d27541e311b6f4001fc68344c9&proj_guid=068A227D253BA6C04D0C832387FD0D89";
 
-        Grabber grabber = new Grabber(urlStr);
+        if (args.length < 1) {
+            System.out.println("No url.");
+            return;
+        }
+
+        Grabber grabber = new Grabber(args[0]);
         Question[] questions = grabber.grabQuestions();
 
         Gson gson = new Gson();
