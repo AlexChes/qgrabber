@@ -37,12 +37,10 @@ public class Main {
 
         List<Question> questions = new ArrayList<>();
         for (int i = 0; i < countOfLinkedPages; i++) {
-
-
             questionsFromPageToJson(url.replace("&groupno", "&oldgrp") + "&groupno=" + i);
 
             try {
-                Thread.sleep(1000);
+                Thread.sleep(100);
             } catch(InterruptedException ex) {
                 Thread.currentThread().interrupt();
             }
