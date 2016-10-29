@@ -1,6 +1,6 @@
 # Questions Grabber
 
-## Как пользоваться
+## How to use
 
 Install `Java` - http://www.oracle.com/technetwork/java/javase/downloads/
 
