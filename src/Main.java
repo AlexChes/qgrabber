@@ -1,8 +1,6 @@
 import com.google.gson.Gson;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by vlad on 27/10/2016.
@@ -24,46 +22,6 @@ public class Main {
         String json =  gson.toJson(questions);
 
         System.out.println(json);
-    }
-
-
-    private static String questionsFromPageAndLinkedPagesToJson(String url) throws IOException {
-        System.out.println("Auth");
-        Downloader downloader = new Downloader();
-        String page = downloader.loadPage(url);
-
-        Parser parser = new Parser(page);
-        int countOfLinkedPages = parser.getCountOfLinkedPages();
-
-        List<Question> questions = new ArrayList<>();
-        for (int i = 0; i < countOfLinkedPages; i++) {
-            questionsFromPageToJson(url.replace("&groupno", "&oldgrp") + "&groupno=" + i);
-
-            try {
-                Thread.sleep(100);
-            } catch(InterruptedException ex) {
-                Thread.currentThread().interrupt();
-            }
-        }
-
-        System.out.println(countOfLinkedPages);
-
-        Gson gson = new Gson();
-        return gson.toJson(questions);
-    }
-
-    private static String questionsFromPageToJson(String url) throws IOException {
-        Downloader downloader = new Downloader();
-        String page = downloader.loadPage(url);
-
-        Parser parser = new Parser(page);
-        Question[] questions = parser.getQuestions();
-        int countOfLinkedPages = parser.getCountOfLinkedPages();
-
-        System.out.println(countOfLinkedPages);
-
-        Gson gson = new Gson();
-        return gson.toJson(questions);
     }
 
 }
