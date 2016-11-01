@@ -18,7 +18,6 @@ public class Parser {
     private static final String ID_SELECTOR = "td[align=\"right\"] > span[style=\"color:#D0D0D0\"]";
     private static final String LINKS_SELECTOR = ".walk";
 
-
     private Document doc;
 
     public Parser(String page) {

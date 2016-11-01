@@ -6,6 +6,7 @@ import java.util.List;
 /**
  * Created by alex on 29/10/2016.
  */
+
 public class Grabber {
 
     private String url;

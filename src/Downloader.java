@@ -10,6 +10,7 @@ import java.util.Map;
 /**
  * Created by alex on 29/10/2016.
  */
+
 public class Downloader {
 
     private String authKey;
