@@ -7,8 +7,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * Created by vlad on 28/10/2016.
+ * Created by alex on 28/10/2016.
  */
+
 public class Parser {
 
     private static final String QUESTION_SELECTOR = "table tr td[style] table tr td table[cellspacing=\"3\"]";

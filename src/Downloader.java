@@ -8,19 +8,21 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by vlad on 29/10/2016.
+ * Created by alex on 29/10/2016.
  */
 public class Downloader {
 
     private String authKey;
 
     public Downloader() throws IOException {
+        // Получаем ключ авторизации для доступа к остальным страницам сайта
         authKey = auth();
     }
 
-    private static final String AUTH_URL = "http://85.142.162.119/os11/xmodules/qprint/openlogin.php";
-
     public String loadPage(String url) throws IOException {
+        // Для получение корректного ответа от сайта по адресу /index.php?SOME_REQUEST
+        // нужно вначале обратиться по адресу /qsearch.php?SOME_REQUEST
+        // Это требование сайта
         String preloadUrl = url.replace("index.php", "qsearch.php");
         getUrl(preloadUrl);
 
@@ -53,15 +55,20 @@ public class Downloader {
         return result.toString();
     }
 
+
+    private static final String AUTH_URL = "http://85.142.162.119/os11/xmodules/qprint/openlogin.php";
+
     private String auth() throws IOException {
         URL url = new URL(AUTH_URL);
         URLConnection conn = url.openConnection();
+
+        // Временно отключаем переадресацию запроса
         HttpURLConnection httpConn = (HttpURLConnection) conn;
         httpConn.setInstanceFollowRedirects(false);
 
         Map<String, List<String>> map = conn.getHeaderFields();
-
         String sessionId = map.get("Set-Cookie").get(0);
+
         sessionId = sessionId.substring(sessionId.indexOf("PHPSESSID=") + "PHPSESSID=".length());
 
         int endOfPass = sessionId.indexOf(";");
